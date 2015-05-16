@@ -1,0 +1,9 @@
+/* Main Stylesheet */
+section, header, article, aside, footer, div {
+    display: block;
+}
+
+body {
+    
+    background-color: black;
+}
