@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+    <head>
+        <meta charset="UTF-8">
+        <title>Awesome Monkey Math</title>
+        <!--[if lt IE 9]>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+        <![endif]-->
+        <meta name="keywords" content="math, games, game, math facts" />
+        
+        <!-- Bootstrap stuff -->
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        
+        <br>
+        <form action="index.html">
+            <input type="submit" value="Back to game">
+        </form>
+        
+        <!-- Cookie stuff -->
+        <script src="/js-cookie-master/src/js.cookie.js"></script>
+        <script src="cookieWrapper.js"></script>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- End Bootstrap stuff -->
+        <script>
+        
+            document.write("<h1>Class progress data:</h1>");
+            var student_list = [];
+        
+            var tag_names =
+            [
+                "addition",
+                "subtraction",
+                "multiplication",
+                "over12",
+                "wordproblem"
+            ];
+        
+            student_list = Cookies.getJSON("students");
+            
+            if(student_list == undefined)
+            {
+                document.write("No student list found!");
+            }
+            else
+            {
+                document.write('<table style="width:100%">');
+                
+                //--------------------------------------------------
+                //Write table header
+                //--------------------------------------------------
+                
+                document.write('<tr>');
+                document.write('<td><h2>Name</h2></td>');
+                
+                for(i = 0; i < tag_names.length; i++)
+                    document.write("<td><h2>" + tag_names[i] + "</h2></td>");
+                
+                document.write("</tr>");
+                
+                //--------------------------------------------------
+                //Write table data
+                //--------------------------------------------------
+                
+                for(i = 0; i < student_list.length; i++)
+                {
+                    document.write('<tr>');
+                    
+                    //Get student name to search for.
+                    var name = student_list[i];
+                    
+                    document.write("<td><h3>" + name + "</h3></td>");
+                    
+                    for(j = 0; j < tag_names.length; j++)
+                    {
+                        var score = calcStudentScore(name, tag_names[j]);
+                        
+                        document.write("<td>" + score + "</td>");
+                    }
+                    
+                    document.write('</tr>');
+                }
+                
+                //--------------------------------------------------
+                //Finish!
+                //--------------------------------------------------
+                
+                document.write('</table>');
+            }
+            
+        </script>
+        <!-- Tets stuff 
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        -->
+    </head>
+    <body>
+            
+    </body>
+    
+</html>

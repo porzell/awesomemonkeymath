@@ -12,12 +12,31 @@
 	<!-- We also provide hosted minified versions of all CreateJS libraries.
 	  http://code.createjs.com -->
 
+	<link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript">
+        WebFont.load({
+            google: {
+                families: [ 'Schoolbell']
+            },
+            loading: function() {
+                console.log("loading");
+            },
+            active: function () {
+                window.init();
+            },
+            inactive: function() {
+                console.log("inactive")
+            }
+        });
+    </script>
+
 <script id="editable">
 	var stage;
 	function init() {
 		stage = new createjs.Stage("testCanvas");
 
-		var txt = new createjs.Text("", "18px Arial", "#111");
+		var txt = new createjs.Text("", "18px Schoolbell", "#111");
 
 		txt.text = "This wrapped multi-line text is rendered using the Text Object.\n\n";
 		txt.text += "Text is fairly limited in canvas and EaselJS. It's fine for simple labels, titles, and HUD elements. You are limited to a single style per Text object, and the text is not selectable, editable, or accessible.\n\n";

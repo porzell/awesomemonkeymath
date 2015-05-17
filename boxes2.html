@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Who knows where a title shows up</title>
+		<script src="jquery-2.1.4.js"></script>
+		<script src="js.cookie.js"></script>
+		<script>
+			
+			var ONE_FRAME_TIME = 1000/60;
+			
+			var width = 30;
+			var height = 30;
+			
+			var boxes = [];
+			var boxesToSave = [];
+			
+			var canvas;
+			var ctx;
+			
+			function setCookie(cname, cvalue, exdays)
+			{
+				var d = new Date();
+				
+				d.setTime(d.getTime() + (exdays*24*60*60*1000));
+				
+				var expires = "expires="+d.toUTCString();
+				
+				document.cookie = cname + "=" + cvalue + "; " + expires;
+			}
+			
+			function getCookie(cname)
+			{
+				var name = cname + "=";
+				var ca = document.cookie.split(';');
+				
+				for(var i=0; i<ca.length; i++)
+				{
+					var c = ca[i];
+					
+					while (c.charAt(0)==' ')
+						c = c.substring(1);
+						
+					if (c.indexOf(name) == 0)
+						return c.substring(name.length,c.length);
+				}
+				
+				return "";
+			}
+			
+			function updatePositions()
+			{
+				for(index = 0; index < boxes.length; index++)
+				{
+					boxes[index].x += boxes[index].vx;
+					boxes[index].y += boxes[index].vy;
+					
+					boxes[index].vy += 1;
+					
+					if(boxes[index].y >= 300-(height/2))
+					{
+						boxes[index].vy = -boxes[index].vy * 0.80;
+						boxes[index].vx = boxes[index].vx * 0.80;
+					}
+					
+					if(boxes[index].x >= 500-(width/2) || boxes[index].x <= (width/2))
+					{
+						boxes[index].vx = -boxes[index].vx * 0.80;
+						boxes[index].vy = boxes[index].vy * 0.80;
+					}
+					
+				}
+			}
+			
+			function mainLoop()
+			{
+				ctx.clearRect(0,0,500,300);
+				console.log("Main loop called");
+				
+				for(index=0; index < boxes.length; index++)
+				{
+					var x = boxes[index].x;
+					var y = boxes[index].y;
+					ctx.fillRect(x - width/2, y - height/2, width, height);
+				}
+				
+				updatePositions();
+			}
+			
+			function canvasClicked(e)
+			{
+				var x = e.clientX + document.body.scrollLeft - canvas.offsetLeft;
+				var y = e.clientY + document.body.scrollTop - canvas.offsetTop;
+				
+				var vx = Math.floor((Math.random() * 20.0) + -10.0);
+				var vy = Math.floor((Math.random() * 10.0) + -5.0);
+				
+				boxes.push({x:x, y:y, vx:vx, vy:vy});
+				boxesToSave.push({x:x, y:y, vx:vx, vy:vy});
+				Cookies.set("boxes",JSON.stringify(boxesToSave));
+				Cookies.set("test","5");
+				
+				console.log(JSON.stringify(boxesToSave));
+				//var s = JSON.stringify(boxesToSave);
+				console.log("saved cookie!");
+			}
+			
+			function onloadfunc()
+			{
+				console.log(Cookies.get("test"));
+				console.log("hey");
+				canvas = document.getElementById("canvas");
+				ctx = canvas.getContext("2d");
+				
+				canvas.onclick = canvasClicked;
+				
+				//boxes = $.parseJSON($.cookie("people"));
+				//boxesToSave = $.parseJSON($.cookie("people"));
+				
+				var tmp = Cookies.get('boxes');
+				
+				if(!tmp)
+				{
+					console.log("Could not read from cookie!");
+				}
+				else
+				{
+					boxes = Cookies.getJSON("boxes");
+					boxesToSave = Cookies.getJSON("boxes");
+					console.log("loaded cookie!");
+				}
+				
+			}
+			
+			window.onload = onloadfunc;
+			
+			setInterval( mainLoop, ONE_FRAME_TIME );
+			
+		</script>
+	</head>
+	<body>
+		<h1>Getting started with Canvas</h1>
+		
+		<canvas id="canvas" width="500" height="300" style="background: #EEF"/>
+	</body>
+</html>

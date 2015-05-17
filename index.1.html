@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+    <head>
+        <meta charset="UTF-8">
+        <title>Awesome Monkey Math</title>
+        <!--[if lt IE 9]>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+        <![endif]-->
+        <meta name="keywords" content="math, games, game, math facts" />
+        
+        <!-- Fonts -->
+        <!-- Schoolbell.ttf: Copyright (c) 2010 by Font Diner, Inc. All rights reserved. -->
+        <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
+        
+        <script type="text/javascript">
+        WebFont.load({
+            google: {
+                families: [ 'Schoolbell']
+            },
+            loading: function() {
+                console.log("loading");
+            },
+            active: function () {
+                window.init();
+            },
+            inactive: function() {
+                console.log("inactive")
+            }
+        });
+        </script>
+        
+        <!-- Bootstrap stuff -->
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        
+        <!-- game stuff -->
+    	<script src="/EaselJS-0.8.0/_assets/libs/preloadjs-NEXT.min.js"></script>
+    
+    	<script src="/EaselJS-0.8.0/lib/easeljs-NEXT.combined.js"></script>
+    	<script src="/EaselJS-0.8.0/_assets/libs/tweenjs-NEXT.min.js"></script>
+            
+        <!-- Custom stylesheets -->
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" type="text/css" href="css/font.css" />
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- End Bootstrap stuff -->
+        <script>
+            /* 
+            function mWidth {
+                var maingame = document.getElementById('maingame');
+                maingame.width = 800;
+                maingame.height = 600;
+            }
+            
+           window.onresize = mWidth;
+            */
+        </script>
+        <!-- Tets stuff 
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        -->
+        <script src="utils.js"></script>
+        <script src="name_generator.js"></script>
+        <script src="word_problems.js"></script>
+        
+        <script src="script.js"></script>
+        
+        
+        <script src="/EaselJS-0.8.0/_assets/js/examples.js"></script>
+        <script src="Button.js"></script>
+        <script src="game.js"></script>
+    </head>
+    <body onload="init();">
+    <body>
+        
+        <!-- Navigation -->
+        <nav class="navbar navbar-default" style="margin:0;">
+             <div class="container-fluid" style="color: blue;">
+                <a class="navbar-brand menulink" href="index.html">Awesome Monkey Math</a>                      
+                <ul class="nav">
+                    <li class="pull-right menulink" style="color: "><a class="menulink" href="#">Quit</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- End Navigation -->
+        
+        <div id="outerwrapper">
+            <div id="innerwrapper">
+               
+            </div>
+        </div> 
+        <div id="lowerwrapper">
+            
+        </div>
+       
+        
+        
+        
+        
+        <!-- set up other screens  
+        <div id="maingame" style="background-color: red; width: auto; height: auto;">
+            <canvas id="canvas" width="800" height="600" style="background-color: blue!important;" />
+        </div>
+        -->
+        
+        
+        <!-- for later uses -->
+        
+            <!-- <div id="start" class="container-fluid" style="margin: auto; max-width: 800px">
+                <h1>Welcome to Awesome Monkey Math</h1>
+                <div class="row" style="background-color: grey;">
+                    <div class="col-sm-6">
+                        <button id="btn_start" class="stagebutton">Start Game</button>
+                    </div>
+                    <div class="col-sm-6" class="stagebutton">
+                        <button id="btn_stats" class="stagebutton">Teacher Login</button>
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div id="login" class="container-fluid">
+                //<button id="word_problem_btn">Make Word Problem</button>
+                <h1 id="cur_player_id"></h1>
+                <p id="txt"></p> //question
+                <form>
+                Answer:<br>
+                <input type="text" name="user_answer">
+                </form>
+                <button id="btn_enter">Enter</button>
+                <button id="btn_skip">Skip</button>
+                <button id="btn_challenge" >Challenge</button>
+                <font color="black">
+                //<p id="txt"></p>
+                </font>
+            </div> 
+            
+            <div id="stats" class="container-fluid">
+                <h1>Player 1</h1>
+                <p id="p1_stats"></p>
+                <h1>Player 2</h1>
+                <p id="p2_stats"></p>
+            </div> -->
+            
+    </body>
+    
+</html>

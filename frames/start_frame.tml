@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="start_form">
+        <button id="btn_start" class="stagebutton" type="button" style="display:block">Start Game</button>
+    </div>
+<body>
+<html>

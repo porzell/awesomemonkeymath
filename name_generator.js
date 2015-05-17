@@ -2464,6 +2464,16 @@ function get_first_name()
     }
 }
 
+//TODO: Consider an object return form for names.
+//{title:"", first_name:"John", last_name:"Smith"}
+
+//Currently, generate_name() returns an array of strings containing a name.
+//It randomly chooses between the following name formats in the array:
+//
+//	- title and last name put into one string
+//	- first name only in one string
+//	- first name in one element and last name in the next
+//
 function generate_name()
 {
     var name_type = Math.floor(3 * Math.random());

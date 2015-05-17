@@ -1,0 +1,55 @@
+
+var stage, w, h, loader;
+var grant;
+
+function init() {
+	examples.showDistractor();
+	stage = new createjs.Stage("testCanvas");
+
+	// grab canvas width and height for later calculations:
+	w = stage.canvas.width;
+	h = stage.canvas.height;
+
+	manifest = [
+		{src: "spritesheet_grant.png", id: "grant"}
+	];
+
+	loader = new createjs.LoadQueue(false);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(manifest, true, "../_assets/art/");
+}
+
+function handleComplete() {
+	examples.hideDistractor();
+
+	var spriteSheet = new createjs.SpriteSheet({
+												   framerate: 30,
+												   "images": [loader.getResult("grant")],
+												   "frames": {"regX": 82, "height": 292, "count": 64, "regY": 0, "width": 165},
+												   // define jump (returns to run):
+												   "animations": {
+													   "jump": [26, 63, "run"]
+												   }
+											   });
+	stage.addChild(grant);
+	stage.addEventListener("stagemousedown", handleJumpStart);
+
+	createjs.Ticker.timingMode = createjs.Ticker.RAF;
+	createjs.Ticker.addEventListener("tick", tick);
+}
+
+function handleJumpStart() {
+	grant.gotoAndPlay("jump");
+}
+
+function tick(event) {
+	var deltaS = event.delta / 1000;
+	var position = grant.x + 150 * deltaS;
+
+	var grantW = grant.getBounds().width * grant.scaleX;
+	grant.x = (position >= w + grantW) ? -grantW : position;
+
+	ground.x = (ground.x - deltaS * 150) % ground.tileW;
+
+	stage.update(event);
+}

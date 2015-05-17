@@ -4,37 +4,234 @@
     <head>
         <meta charset="UTF-8">
         <title>Awesome Monkey Math</title>
+        <!--[if lt IE 9]>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+        <![endif]-->
         <meta name="keywords" content="math, games, game, math facts" />
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        
+        <!-- Fonts -->
+        <!-- Schoolbell.ttf: Copyright (c) 2010 by Font Diner, Inc. All rights reserved. -->
+        <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
         
         <!-- Bootstrap stuff -->
         
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        
+        <!-- Cookie stuff -->
+        <script src="js.cookie.js"></script>
+        <script src="cookieWrapper.js"></script>
+        
+        <!-- game stuff -->
+    	<script src="/EaselJS-0.8.0/_assets/libs/preloadjs-NEXT.min.js"></script>
+    
+    	<script src="/EaselJS-0.8.0/lib/easeljs-NEXT.combined.js"></script>
+    	<script src="/EaselJS-0.8.0/_assets/libs/tweenjs-NEXT.min.js"></script>
+            
+        <!-- Custom stylesheets -->
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" type="text/css" href="css/font.css" />
+        
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- End Bootstrap stuff -->
         
+        <!-- Test stuff 
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        -->
+        
+        <script>
+         /*
+            function showLogin() {
+                $( "#start_form" ).css("visibility", "hidden");
+                $( "#start_form" ).css("display", "none");
+                $( "#bottom_form" ).css("visibility", "hidden");
+                $( "#bottom_form" ).css("display", "none");
+                $( "#login_form" ).css("visibility", "visible");
+                $( "#login_form" ).css("display", "block");
+            }
+            
+            function showGame() {
+                $( "#start_form" ).css("visibility", "hidden");
+                $( "#start_form" ).css("display", "none");
+                $( "#bottom_form" ).css("visibility", "visible");
+                $( "#bottom_form" ).css("display", "block");
+                $( "#login_form" ).css("visibility", "hidden");
+                $( "#login_form" ).css("display", "none");
+            }
+            
+            function showStart() {
+                $("#login_form").hide();
+                $("#bottom_form").hide();
+                $("#start_form").show();
+            }
+            */
+            
+            
+        </script>
+        
         <script src="utils.js"></script>
         <script src="name_generator.js"></script>
         <script src="word_problems.js"></script>
+        <script src="problems.js"></script>
+        
         <script src="script.js"></script>
         
+        
+        <script src="/EaselJS-0.8.0/_assets/js/examples.js"></script>
+        <script src="Button.js"></script>
+        <script src="game.js"></script>
     </head>
-    
+    <body onload="init();">
     <body>
-        <!-- Start Screen -->
-        <h1>Welcome to Awesome Monkey Math</h1>
-        <button id="btn_start">Start Game</button>
-        <button id="btn_stats">Teacher Stats</button>
-        <button id="word_problem_btn">Make Word Problem</button>
-        <font color="red">
-        <p id="txt"><p/>
-        </font>
+        
+        <!-- Navigation -->
+        <nav class="navbar navbar-default" style="margin:0;">
+             <div class="container-fluid" style="color: blue;">
+                <a class="navbar-brand menulink" href="index.html">Awesome Monkey Math</a>                      
+                <ul class="nav">
+                    <li class="pull-right menulink" style="color: "><a class="menulink" id="link_quit" href="#">Quit</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!--
+        <nav id="mynav">
+             
+                <a class="navbar-brand menulink" href="index.html">Awesome Monkey Math</a>                      
+              
+                <a class="menulink" id="link_quit" href="#">Quit</a></li>
+                
+            </div>
+        </nav> -->
+        <!-- End Navigation -->
+        
+        <div id="outerwrapper">
+            <div id="innerwrapper">
+                <div id="title_stuff">
+                    <img src="branch.png" />
+                    <img src="branch.png" class="flip" style="float: right;" />
+                    <div style="clear: both;"></div>
+                    <h1 id="title" style="position: absolute; text-align: center; position: relative;">Welcome to Awesome Monkey Math!</h1>
+                    <img src="monkey_single.png" style="height: 180px;" />
+                    <img src="monkey_single.png" class="flip" style="height: 180px; float:right;" />
+                     <div style="clear: both;"></div>
+                </div>
+                <canvas id="canvas" height="400" width="800"/>
+            </div>
+        </div> 
+        
+        <div id="lowerwrapper">
+            
+            <div id="start_form">
+                <div class="left">
+                   <button id="btn_start" class="stagebutton center" type="button">Start Game</button>
+                </div>
+                <div class="right">
+
+                </div>
+            </div>
+            
+        
+            <div id="login_form">
+                <div class="left">
+                    <h3>Enter Player Names:</h3><br />
+                    <p>Player One: </p>
+                    <input type="text" id="player_one" name="player_one" autocomplete="off" >
+                    <p>Player Two: </p>
+                    <input type="text" id="player_two" name="player_two" autocomplete="off" >
+                    <button id="btn_play" class="stagebutton" type="button">Play</button> 
+                </div>
+                <div class="right">
+                    
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            
+            <div id="bottom_form">
+                <div class="left">
+                    <!--<button id="word_problem_btn">Make Word Problem</button> -->
+                    <h1 id="cur_player"></h1>
+                    
+                    Answer:<br>
+                    <input type="text" id="user_answer" name="user_answer" autocomplete="off" >
+                    <button id="btn_enter" type="button">Enter</button>
+                    <button id="btn_skip" type="button">Skip</button>
+                    <button id="btn_challenge" >Challenge</button>
+                    <button id="btn_report" type="button">Reports</button>
+                    <font color="black">
+                    </font>
+                </div>
+            <div class="right">
+                
+                <p id="txt"></p> <!-- question -->
+            </div>
+            </div>
+            
+            <div id="report_form">
+                <div class="left">
+                    <button id="restart" type="button">Home</button>
+                </div>
+                <div class="right">
+                    <p id="p1_stats"></p>
+                    <p id="p2_stats"></p>
+                    <p><a href="teacher.html">Class Status</a></p>
+                </div>
+            </div>
+        </div>
+       
+        
+        
+        
+        
+        <!-- set up other screens  
+        <div id="maingame" style="background-color: red; width: auto; height: auto;">
+            <canvas id="canvas" width="800" height="600" style="background-color: blue!important;" />
+        </div>
+        -->
+        
+        
+        <!-- for later uses -->
+        
+            <!-- <div id="start" class="container-fluid" style="margin: auto; max-width: 800px">
+                <h1>Welcome to Awesome Monkey Math</h1>
+                <div class="row" style="background-color: grey;">
+                    <div class="col-sm-6">
+                        <button id="btn_start" class="stagebutton">Start Game</button>
+                    </div>
+                    <div class="col-sm-6" class="stagebutton">
+                        <button id="btn_stats" class="stagebutton">Teacher Login</button>
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div id="login" class="container-fluid">
+                <button id="word_problem_btn">Make Word Problem</button>
+                <h1 id="cur_player_id"></h1>
+                <p id="txt"></p> //question
+                <form>
+                Answer:<br>
+                <input type="text" name="user_answer">
+                </form>
+                <button id="btn_enter">Enter</button>
+                <button id="btn_skip">Skip</button>
+                <button id="btn_challenge" >Challenge</button>
+                <font color="black">
+                //<p id="txt"></p>
+                </font>
+            </div> 
+            
+            <div id="stats" class="container-fluid">
+                <h1>Player 1</h1>
+                <p id="p1_stats"></p>
+                <h1>Player 2</h1>
+                <p id="p2_stats"></p>
+            </div> -->
+            
     </body>
     
 </html>

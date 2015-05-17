@@ -4,6 +4,121 @@ section, header, article, aside, footer, div {
 }
 
 body {
-    
-    background-color: black;
+    margin: 0;
+    padding: 0;
+    background-color: #29A629;
 }
+
+/* Navigation Links */
+.menulink:link {
+    color:#9A9EA1 !important;
+}
+
+.menulink:visited {
+    color:#9A9EA1 !important;
+}
+
+.menulink:hover {
+    color:#6C6F71 !important;
+    background-color: transparent !important;
+}
+
+.menulink:active {
+    color:#9A9EA1 !important;
+}
+
+/* End Navigation Links */
+/*
+#gamehead {
+    color: black;
+}
+
+.gamebox {
+    width: 100%;
+    height: 500px;
+    background-color: #66ccff;
+}
+
+.gamestage {
+    margin: auto;
+    
+    background-color: red;
+    max-width: 800px;
+    /* add min width for small devices? 
+    max-height: 600px;
+}
+*/
+
+/* Fresh */
+#outerwrapper {
+    margin:0;
+    padding:0;
+    width: 100%;
+    height: 400px;
+    background-color: green;
+}
+
+#innerwrapper {
+    margin: 0 auto;
+    width: 880px;
+    border-left: 40px solid #624200;
+    border-right: 40px solid #624200;
+    height: 400px;
+    background: #0099cc;
+    overflow: hidden;
+}
+
+#lowerwrapper {
+    margin: 0 auto;
+    padding: 0;
+    width: 800px;
+    min-height: 400px;
+    background-color: grey;
+}
+
+.right, .left {
+    width: 400px;
+    min-height: 400px;
+    padding: 20px;
+    background-color: #B2F0B2;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+ 
+}
+
+.flip {
+    -webkit-transform:scaleX(-1);
+    -moz-transform:scaleX(-1);
+    -ms-transform:scaleX(-1);
+    -o-transform:scaleX(-1);
+    transform:scaleX(-1);
+}
+
+.number {
+    font-weight: bold;
+}
+
+#bottom_form, #start_form, #login_form, #report_form {
+    width: 800px;
+}
+
+#bottom_form, #login_form, #report_form {
+   visibility: hidden;
+   display: none;
+}
+
+#start_form .center {
+    margin: 0 auto;
+}
+
+
+
+
+
+
